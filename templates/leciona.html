@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Matrículas - Relações Leciona</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Relações Leciona</h1>
+
+    <h2>Inserir Relação Leciona</h2>
+    <form action="/inserir_leciona" method="post">
+        <input type="text" name="professor_id" placeholder="ID do Professor" required>
+        <input type="text" name="disciplina_id" placeholder="ID da Disciplina" required>
+        <input type="text" name="turma_id" placeholder="ID da Turma" required>
+        <input type="submit" value="Inserir">
+    </form>
+
+    <h2>Relações Leciona Registradas</h2>
+    <ul>
+    {% for leciona in lecionas %}
+        <li>
+            Professor ID: {{ leciona[0] }} - Disciplina ID: {{ leciona[1] }} - Turma ID: {{ leciona[2] }}
+            <a href="/remover_leciona/{{ leciona[0] }}/{{ leciona[1] }}/{{ leciona[2] }}">Remover</a><br>
+            <form action="/atualizar_leciona/{{ leciona[0] }}/{{ leciona[1] }}/{{ leciona[2] }}" method="post" style="display: inline-block;">
+                <input type="text" name="professor_id" placeholder="Novo ID do Professor" required>
+                <input type="text" name="disciplina_id" placeholder="Novo ID da Disciplina" required>
+                <input type="text" name="turma_id" placeholder="Novo ID da Turma" required>
+                <input type="submit" value="Atualizar">
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

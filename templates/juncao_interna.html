@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Matrículas - Junção Interna</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Junção Interna - Alunos e Disciplinas Matriculadas</h1>
+
+    <table>
+        <tr>
+            <th>Nome do Aluno</th>
+            <th>Email do Aluno</th>
+            <th>Nome da Disciplina</th>
+        </tr>
+        {% for resultado in resultados %}
+        <tr>
+            <td>{{ resultado[0] }}</td>
+            <td>{{ resultado[1] }}</td>
+            <td>{{ resultado[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

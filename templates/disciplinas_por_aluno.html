@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Matrículas - Disciplinas por Aluno</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Disciplinas por Aluno</h1>
+
+    <table>
+        <tr>
+            <th>Nome do Aluno</th>
+            <th>Quantidade de Disciplinas Cursadas</th>
+        </tr>
+        {% for resultado in resultados %}
+        <tr>
+            <td>{{ resultado[0] }}</td>
+            <td>{{ resultado[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professores</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Professores</h1>
+
+    <h2>Inserir Professor</h2>
+    <form action="/inserir_professor" method="post">
+        <label>Nome:</label>
+        <input type="text" name="nome" required><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label>Curso:</label>
+        <input type="text" name="curso" required><br>
+
+        <label>Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" required><br>
+
+        <label>Endereço:</label>
+        <input type="text" name="endereco" required><br>
+
+        <input type="submit" value="Inserir">
+    </form>
+
+    <h2>Professores Cadastrados</h2>
+    <ul>
+    {% for professor in professores %}
+        <li>
+            {{ professor[1] }} ({{ professor[2] }}) - {{ professor[3] }} - {{ professor[4] }} - {{ professor[5] }}
+            <a href="/remover_professor/{{ professor[0] }}">Remover</a><br>
+            <form action="/atualizar_professor/{{ professor[0] }}" method="post" style="display: inline-block;">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="curso" placeholder="Curso" required>
+                <input type="date" name="data_nascimento" placeholder="Data de Nascimento" required>
+                <input type="text" name="endereco" placeholder="Endereço" required>
+                <input type="submit" value="Atualizar">
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

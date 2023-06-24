@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Matrículas - Turmas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Turmas</h1>
+
+    <h2>Inserir Turma</h2>
+    <form action="/inserir_turma" method="post">
+        <label>Sala:</label>
+        <input type="text" name="sala" required><br>
+
+        <label>Horário:</label>
+        <input type="text" name="horario" required><br>
+
+        <input type="submit" value="Inserir">
+    </form>
+
+    <h2>Turmas Cadastradas</h2>
+    <ul>
+    {% for turma in turmas %}
+        <li>
+            Sala: {{ turma[1] }} - Horário: {{ turma[2] }}
+            <a href="/remover_turma/{{ turma[0] }}">Remover</a><br>
+            <form action="/atualizar_turma/{{ turma[0] }}" method="post" style="display: inline-block;">
+                <input type="text" name="sala" placeholder="Sala" required>
+                <input type="text" name="horario" placeholder="Horário" required>
+                <input type="submit" value="Atualizar">
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

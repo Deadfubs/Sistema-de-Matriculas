@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Matrículas - Matrículas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Matrículas</h1>
+
+    <h2>Inserir Matrícula</h2>
+    <form action="/inserir_matricula" method="post">
+        <input type="text" name="aluno_id" placeholder="ID do Aluno" required>
+        <input type="text" name="disciplina_id" placeholder="ID da Disciplina" required>
+        <input type="submit" value="Inserir">
+    </form>
+
+    <h2>Matrículas Realizadas</h2>
+    <ul>
+    {% for matricula in matriculas %}
+        <li>
+            Aluno ID: {{ matricula[0] }} - Disciplina ID: {{ matricula[1] }}
+            <a href="/remover_matricula/{{ matricula[0] }}/{{ matricula[1] }}">Remover</a><br>
+            <form action="/atualizar_matricula/{{ matricula[0] }}/{{ matricula[1] }}" method="post" style="display: inline-block;">
+                <input type="text" name="aluno_id" placeholder="Novo ID do Aluno" required>
+                <input type="text" name="disciplina_id" placeholder="Novo ID da Disciplina" required>
+                <input type="submit" value="Atualizar">
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

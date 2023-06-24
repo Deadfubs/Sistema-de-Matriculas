@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Matrículas - Alunos por Professor</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Alunos Matriculados nas Turmas do Professor com ID {{ professor_id }}</h1>
+
+    <ul>
+        {% for resultado in resultados %}
+        <li>{{ resultado[0] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
